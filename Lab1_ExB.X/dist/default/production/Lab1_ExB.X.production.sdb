@@ -1,0 +1,29 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F1778 ]
+[d frameptr 6 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"17 C:\Users\jadef\MPLABXProjects\Lab1_ExB.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"68
+[v _Lab1_LEDPattern_Andy Lab1_LEDPattern_Andy `(v  1 e 1 0 ]
+"491 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1778.h
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"1697
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"17 C:\Users\jadef\MPLABXProjects\Lab1_ExB.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"66
+} 0
+"68
+[v _Lab1_LEDPattern_Andy Lab1_LEDPattern_Andy `(v  1 e 1 0 ]
+{
+"74
+[v Lab1_LEDPattern_Andy@count count `uc  1 s 1 count ]
+"82
+} 0
