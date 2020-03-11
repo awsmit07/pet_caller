@@ -3,18 +3,37 @@
 [d edition pro ]
 [d chip 16F1778 ]
 [d frameptr 6 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "10 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
 [v _main main `(v  1 e 1 0 ]
-"67
+"88
 [v _SineArray SineArray `(s  1 e 2 0 ]
-"119
+"140
 [v _Lab2_writeDAC Lab2_writeDAC `(v  1 e 1 0 ]
 "7 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
 [v _Lab2_ConfigureTimer2 Lab2_ConfigureTimer2 `(v  1 e 1 0 ]
+[s S165 . 1 `uc 1 IOCIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 IOCIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"374 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1778.h
+[s S174 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 T0IE 1 0 :1:5 
+]
+[u S179 . 1 `S165 1 . 1 0 `S174 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES179  1 e 1 @11 ]
 [s S25 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -24,7 +43,7 @@
 `uc 1 ADIF 1 0 :1:6 
 `uc 1 TMR1GIF 1 0 :1:7 
 ]
-"657 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1778.h
+"657
 [s S34 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 CCPIF 1 0 :1:2 
 ]
@@ -89,6 +108,30 @@
 "3838
 [u S114 . 1 `S106 1 . 1 0 ]
 [v _ANSELCbits ANSELCbits `VES114  1 e 1 @398 ]
+[s S197 . 1 `uc 1 IOCCP0 1 0 :1:0 
+`uc 1 IOCCP1 1 0 :1:1 
+`uc 1 IOCCP2 1 0 :1:2 
+`uc 1 IOCCP3 1 0 :1:3 
+`uc 1 IOCCP4 1 0 :1:4 
+`uc 1 IOCCP5 1 0 :1:5 
+`uc 1 IOCCP6 1 0 :1:6 
+`uc 1 IOCCP7 1 0 :1:7 
+]
+"9614
+[u S206 . 1 `S197 1 . 1 0 ]
+[v _IOCCPbits IOCCPbits `VES206  1 e 1 @919 ]
+[s S218 . 1 `uc 1 IOCCF0 1 0 :1:0 
+`uc 1 IOCCF1 1 0 :1:1 
+`uc 1 IOCCF2 1 0 :1:2 
+`uc 1 IOCCF3 1 0 :1:3 
+`uc 1 IOCCF4 1 0 :1:4 
+`uc 1 IOCCF5 1 0 :1:5 
+`uc 1 IOCCF6 1 0 :1:6 
+`uc 1 IOCCF7 1 0 :1:7 
+]
+"9738
+[u S227 . 1 `S218 1 . 1 0 ]
+[v _IOCCFbits IOCCFbits `VES227  1 e 1 @921 ]
 "11506
 [v _T2PR T2PR `VEuc  1 e 1 @1172 ]
 "11560
@@ -106,24 +149,43 @@
 "10 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"42
-[v main@x x `s  1 a 2 4 ]
-"61
+"63
+[v main@x x `s  1 a 2 13 ]
+"15
+[v main@period period `[13]uc  1 a 13 0 ]
+"14
+[v main@index index `i  1 a 2 17 ]
+"35
+[v main@swi swi `i  1 a 2 15 ]
+"14
+[v main@F11994 F11994 `[13]uc  1 s 13 F11994 ]
+"82
 } 0
-"67
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 6 ]
+[v ___awmod@counter counter `uc  1 a 1 5 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 0 ]
+[v ___awmod@dividend dividend `i  1 p 2 2 ]
+"34
+} 0
+"88 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
 [v _SineArray SineArray `(s  1 e 2 0 ]
 {
-"70
+"91
 [v SineArray@Array Array `DC[100]s  1 s 200 Array ]
-"86
+"107
 [v SineArray@ArrayIndex ArrayIndex `uc  1 s 1 ArrayIndex ]
-"93
+"114
 } 0
-"119
+"140
 [v _Lab2_writeDAC Lab2_writeDAC `(v  1 e 1 0 ]
 {
 [v Lab2_writeDAC@write_value write_value `s  1 p 2 0 ]
-"124
+"145
 } 0
 "7 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
 [v _Lab2_ConfigureTimer2 Lab2_ConfigureTimer2 `(v  1 e 1 0 ]

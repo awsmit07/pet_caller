@@ -12,15 +12,20 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-cinit CODE 0 7FC 7FC 4 2
-text1 CODE 0 7B8 7B8 18 2
-text2 CODE 0 7A5 7A5 8 2
-text3 CODE 0 7AD 7AD B 2
-maintext CODE 0 7D0 7D0 2C 2
-cstackCOMMON COMMON 1 70 70 6 1
+cinit CODE 0 7F0 7F0 10 2
+text1 CODE 0 701 701 53 2
+text2 CODE 0 6E9 6E9 18 2
+text3 CODE 0 6C9 6C9 8 2
+text4 CODE 0 6D1 6D1 B 2
+maintext CODE 0 754 754 9C 2
+cstackCOMMON COMMON 1 70 70 8 1
+cstackBANK0 BANK0 1 20 20 13 1
+inittext CODE 0 6C3 6C3 6 2
 stringtext1 STRCODE 0 800 800 C8 2
-bssCOMMON COMMON 1 76 76 1 1
-$C:\Users\jadef\AppData\Local\Temp\s3v8.o
+idataBANK0 CODE 0 6DC 6DC D 2
+dataBANK0 BANK0 1 33 33 D 1
+bssCOMMON COMMON 1 78 78 1 1
+$C:\Users\jadef\AppData\Local\Temp\sei8.o
 reset_vec CODE 0 0 0 2 2
 end_init CODE 0 2 2 2 2
 config CONFIG 0 8007 8007 2 2
@@ -30,7 +35,7 @@ config CONFIG 0 8007 8007 2 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 20-6F 1
+RAM 40-6F 1
 RAM A0-EF 1
 RAM 120-16F 1
 RAM 1A0-1EF 1
@@ -56,7 +61,7 @@ RAM B20-B6F 1
 RAM BA0-BEF 1
 RAM C20-C6F 1
 RAM CA0-CBF 1
-BANK0 20-6F 1
+BANK0 40-6F 1
 BANK1 A0-EF 1
 BANK2 120-16F 1
 BANK3 1A0-1EF 1
@@ -66,9 +71,9 @@ BANK6 320-36F 1
 BANK7 3A0-3EF 1
 BANK8 420-46F 1
 BANK9 4A0-4EF 1
-CONST 4-7A4 2
+CONST 4-6C2 2
 CONST 8C8-3FFF 2
-ENTRY 4-7A4 2
+ENTRY 4-6C2 2
 ENTRY 8C8-3FFF 2
 IDLOC 8000-8003 2
 SFR10 500-51F 1
@@ -93,8 +98,8 @@ SFR28 E00-E6F 1
 SFR29 E80-EEF 1
 SFR30 F00-F6F 1
 SFR31 F80-FEF 1
-STACK 2000-23EF 1
-CODE 4-7A4 2
+STACK 2410-27EF 1
+CODE 4-6C2 2
 CODE 8C8-3FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
@@ -124,10 +129,10 @@ BANK24 C20-C6F 1
 BANK25 CA0-CBF 1
 BIGRAM 2000-23EF 1
 BIGRAM 2410-27EF 1
-COMMON 77-7D 1
-STRCODE 4-7A4 2
+COMMON 79-7D 1
+STRCODE 4-6C2 2
 STRCODE 8C8-3FFF 2
-STRING 4-7A4 2
+STRING 4-6C2 2
 STRING 8C8-3FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -143,40 +148,94 @@ STRING 8C8-3FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-7FC cinit CODE >2696:C:\Users\jadef\AppData\Local\Temp\s3v8.s
-7FC cinit CODE >2699:C:\Users\jadef\AppData\Local\Temp\s3v8.s
-7FC cinit CODE >2711:C:\Users\jadef\AppData\Local\Temp\s3v8.s
-7FD cinit CODE >2717:C:\Users\jadef\AppData\Local\Temp\s3v8.s
-7FD cinit CODE >2719:C:\Users\jadef\AppData\Local\Temp\s3v8.s
-7FE cinit CODE >2720:C:\Users\jadef\AppData\Local\Temp\s3v8.s
-7AD text3 CODE >7:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
-7AE text3 CODE >11:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
-7B1 text3 CODE >16:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
-7B3 text3 CODE >22:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
-7B5 text3 CODE >27:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
-7B7 text3 CODE >30:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
-7A5 text2 CODE >119:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7A5 text2 CODE >121:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7A8 text2 CODE >122:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7AA text2 CODE >123:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7AC text2 CODE >124:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7B8 text1 CODE >67:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7B8 text1 CODE >89:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7BF text1 CODE >92:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7CF text1 CODE >93:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7D0 maintext CODE >10:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7D0 maintext CODE >13:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7D3 maintext CODE >16:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7D7 maintext CODE >19:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7D8 maintext CODE >20:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7DA maintext CODE >24:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7DC maintext CODE >25:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7DE maintext CODE >27:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7E1 maintext CODE >33:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7E5 maintext CODE >42:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7EC maintext CODE >47:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7F3 maintext CODE >54:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
-7F8 maintext CODE >57:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7F0 cinit CODE >2724:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F0 cinit CODE >2727:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F0 cinit CODE >2757:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F1 cinit CODE >2758:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F2 cinit CODE >2759:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F3 cinit CODE >2760:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F4 cinit CODE >2761:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F5 cinit CODE >2762:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F6 cinit CODE >2763:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F7 cinit CODE >2764:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F8 cinit CODE >2765:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7F9 cinit CODE >2766:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7FC cinit CODE >2771:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7FD cinit CODE >2777:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7FD cinit CODE >2779:C:\Users\jadef\AppData\Local\Temp\sei8.s
+7FE cinit CODE >2780:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6D1 text4 CODE >7:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+6D2 text4 CODE >11:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+6D5 text4 CODE >16:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+6D7 text4 CODE >22:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+6D9 text4 CODE >27:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+6DB text4 CODE >30:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+6C9 text3 CODE >140:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6C9 text3 CODE >142:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6CC text3 CODE >143:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6CE text3 CODE >144:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6D0 text3 CODE >145:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6E9 text2 CODE >88:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6E9 text2 CODE >110:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6F0 text2 CODE >113:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+700 text2 CODE >114:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+701 text1 CODE >5:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+701 text1 CODE >12:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+702 text1 CODE >13:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+706 text1 CODE >14:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+70B text1 CODE >15:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+70D text1 CODE >17:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+711 text1 CODE >18:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+716 text1 CODE >19:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+71C text1 CODE >20:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+71E text1 CODE >21:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+71F text1 CODE >22:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+724 text1 CODE >23:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+728 text1 CODE >21:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+72C text1 CODE >26:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+736 text1 CODE >27:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+73A text1 CODE >28:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+73F text1 CODE >29:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+745 text1 CODE >31:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+74A text1 CODE >32:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+74F text1 CODE >33:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+753 text1 CODE >34:C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+754 maintext CODE >10:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+754 maintext CODE >13:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+757 maintext CODE >14:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+75A maintext CODE >15:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+768 maintext CODE >17:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+76D maintext CODE >20:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+76E maintext CODE >21:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+770 maintext CODE >25:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+772 maintext CODE >26:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+774 maintext CODE >28:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+777 maintext CODE >34:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+781 maintext CODE >35:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+785 maintext CODE >40:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+786 maintext CODE >41:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+788 maintext CODE >47:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+794 maintext CODE >49:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+796 maintext CODE >50:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7A4 maintext CODE >51:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7A6 maintext CODE >52:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7A7 maintext CODE >53:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7B3 maintext CODE >55:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7B5 maintext CODE >56:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7C3 maintext CODE >57:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7C7 maintext CODE >59:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7D8 maintext CODE >63:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7E0 maintext CODE >68:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7E7 maintext CODE >75:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+7EC maintext CODE >78:C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+6C3 inittext CODE >2746:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6C3 inittext CODE >2747:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6C4 inittext CODE >2748:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6C4 inittext CODE >2749:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6C5 inittext CODE >2750:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6C6 inittext CODE >2751:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6C7 inittext CODE >2752:C:\Users\jadef\AppData\Local\Temp\sei8.s
+6C8 inittext CODE >2753:C:\Users\jadef\AppData\Local\Temp\sei8.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -190,50 +249,58 @@ $dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 3 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__LdataBANK0 0 0 ABS 0 dataBANK0 -
 __Hspace_0 8009 0 ABS 0 - -
-__Hspace_1 77 0 ABS 0 - -
+__Hspace_1 79 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
+__HidataBANK0 0 0 ABS 0 idataBANK0 -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-main@x 74 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+main@x 2D 0 BANK0 1 cstackBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Hstrings 0 0 ABS 0 strings -
 _T2PR 494 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-___sp 0 0 STACK 2 stack C:\Users\jadef\AppData\Local\Temp\s3v8.o
-_main FA0 0 CODE 0 maintext dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+___sp 0 0 STACK 2 stack C:\Users\jadef\AppData\Local\Temp\sei8.o
+_main EA8 0 CODE 0 maintext dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 btemp 7E 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-start 4 0 CODE 0 init C:\Users\jadef\AppData\Local\Temp\s3v8.o
+start 4 0 CODE 0 init C:\Users\jadef\AppData\Local\Temp\sei8.o
+__size_of___awmod 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __size_of_main 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _DAC1CON0 58E 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _DAC1REFH 590 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _DAC1REFL 58F 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__LidataBANK0 0 0 ABS 0 idataBANK0 -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\s3v8.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\s3v8.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\s3v8.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\s3v8.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\s3v8.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\s3v8.o
+___awmod@sign 76 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\sei8.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\sei8.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\sei8.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\sei8.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\sei8.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\jadef\AppData\Local\Temp\sei8.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Hfunctab 0 0 ENTRY 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
+main@swi 2F 0 BANK0 1 cstackBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 23EF 0 ABS 0 - C:\Users\jadef\AppData\Local\Temp\s3v8.o
-___stacklo 2000 0 ABS 0 - C:\Users\jadef\AppData\Local\Temp\s3v8.o
+__end_of___awmod EA8 0 CODE 0 text1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+___stackhi 27EF 0 ABS 0 - C:\Users\jadef\AppData\Local\Temp\sei8.o
+___stacklo 2410 0 ABS 0 - C:\Users\jadef\AppData\Local\Temp\sei8.o
 SineArray@Array 1000 0 STRCODE 0 stringtext1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-_Lab2_writeDAC F4A 0 CODE 0 text2 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-start_initialization FF8 0 CODE 0 cinit dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+_Lab2_writeDAC D92 0 CODE 0 text3 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+start_initialization FE0 0 CODE 0 cinit dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _OSCCON 9B 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _TRISAbits 8C 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _TRISCbits 8E 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-__end_of_SineArray FA0 0 CODE 0 text1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__end_of_SineArray E02 0 CODE 0 text2 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __size_of_SineArray 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 Lab2_writeDAC@write_value 70 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _T2CLKCON 497 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-_Lab2_ConfigureTimer2 F5A 0 CODE 0 text3 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-_SineArray F70 0 CODE 0 text1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-___int_sp 0 0 STACK 2 stack C:\Users\jadef\AppData\Local\Temp\s3v8.o
+_Lab2_ConfigureTimer2 DA2 0 CODE 0 text4 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+_SineArray DD2 0 CODE 0 text2 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+___int_sp 0 0 STACK 2 stack C:\Users\jadef\AppData\Local\Temp\sei8.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -294,6 +361,7 @@ __Hbank30 0 0 BANK30 1 bank30 -
 __Hbank31 0 0 BANK31 1 bank31 -
 __Hbigram 0 0 ABS 0 bigram -
 __Hmaintext 0 0 ABS 0 maintext -
+main@F11994 33 0 BANK0 1 dataBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __CFG_FOSC$INTOSC 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 10012 0 CONFIG 0 config -
@@ -307,7 +375,7 @@ __Lbank6 0 0 ABS 0 bank6 -
 __Lbank7 0 0 ABS 0 bank7 -
 __Lbank8 0 0 ABS 0 bank8 -
 __Lbank9 0 0 ABS 0 bank9 -
-__Lcinit FF8 0 CODE 0 cinit -
+__Lcinit FE0 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 0 idloc -
 __Lsfr10 0 0 ABS 0 sfr10 -
 __Lsfr11 0 0 ABS 0 sfr11 -
@@ -332,6 +400,9 @@ __Lsfr29 0 0 ABS 0 sfr29 -
 __Lsfr30 0 0 ABS 0 sfr30 -
 __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
+init_ram D86 0 CODE 0 inittext dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__Linittext 0 0 ABS 0 inittext -
+_INTCONbits B 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
 __Hinit 4 0 CODE 0 init -
@@ -361,16 +432,22 @@ __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
 __pstringtext1 1000 0 STRCODE 0 stringtext1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __S0 8009 0 ABS 0 - -
-__S1 77 0 ABS 0 - -
+__S1 79 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __size_of_Lab2_writeDAC 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __CFG_PLLEN$ON 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lintentry 4 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\jadef\AppData\Local\Temp\s3v8.o
-__end_of_Lab2_writeDAC F5A 0 CODE 0 text2 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\jadef\AppData\Local\Temp\sei8.o
+__pdataBANK0 33 0 BANK0 1 dataBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__end_of_Lab2_writeDAC DA2 0 CODE 0 text3 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lstringtext1 0 0 ABS 0 stringtext1 -
+___awmod@counter 75 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+_IOCCFbits 399 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+_IOCCPbits 397 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+___awmod E02 0 CODE 0 text1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lbank10 0 0 ABS 0 bank10 -
 __Lbank11 0 0 ABS 0 bank11 -
 __Lbank12 0 0 ABS 0 bank12 -
@@ -393,38 +470,47 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext FA0 0 CODE 0 maintext dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__pmaintext EA8 0 CODE 0 maintext dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lbigram 0 0 ABS 0 bigram -
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 1000E 0 CONFIG 0 config -
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__Hinittext 0 0 ABS 0 inittext -
+main@index 31 0 BANK0 1 cstackBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 Lab2_ConfigureTimer2@TimerPeriod_us 70 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-__pbssCOMMON 76 0 COMMON 1 bssCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__pbssCOMMON 78 0 COMMON 1 bssCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
 _PIR1bits 11 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lend_init 4 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 end_of_initialization FFA 0 CODE 0 cinit dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Hintentry 4 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
+?___awmod 70 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Hreset_vec 4 0 CODE 0 reset_vec -
-SineArray@ArrayIndex 76 0 COMMON 1 bssCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-__ptext1 F70 0 CODE 0 text1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-__ptext2 F4A 0 CODE 0 text2 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-__ptext3 F5A 0 CODE 0 text3 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+SineArray@ArrayIndex 78 0 COMMON 1 bssCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+___awmod@dividend 72 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__ptext1 E02 0 CODE 0 text1 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__ptext2 DD2 0 CODE 0 text2 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__ptext3 D92 0 CODE 0 text3 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__ptext4 DA2 0 CODE 0 text4 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __Hstringtext1 0 0 ABS 0 stringtext1 -
+main@period 20 0 BANK0 1 cstackBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __end_of__initialization FFA 0 CODE 0 cinit dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+___awmod@divisor 70 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lfunctab 0 0 ENTRY 0 functab -
+__pidataBANK0 DB8 0 CODE 0 idataBANK0 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Lclrtext 0 0 ABS 0 clrtext -
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __Hend_init 8 0 CODE 0 end_init -
-__end_of_main FF8 0 CODE 0 maintext dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__end_of_main FE0 0 CODE 0 maintext dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _DACLD 58D 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _T2CON 495 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 __size_of_Lab2_ConfigureTimer2 0 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
@@ -432,8 +518,9 @@ __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 ?_SineArray 70 0 COMMON 1 cstackCOMMON dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _OSCSTATbits 9C 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-__initialization FF8 0 CODE 0 cinit dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
-__end_of_Lab2_ConfigureTimer2 F70 0 CODE 0 text3 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__HdataBANK0 0 0 ABS 0 dataBANK0 -
+__initialization FE0 0 CODE 0 cinit dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
+__end_of_Lab2_ConfigureTimer2 DB8 0 CODE 0 text4 dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _ANSELAbits 18C 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 _ANSELCbits 18E 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 # %SPLITSTAB Section
@@ -461,14 +548,18 @@ _ANSELCbits 18E 0 ABS 0 - dist/default/debug\ENCM369_Lab2_Updated.X.debug.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7FC FF8 4 2
-text1 0 7B8 F70 18 2
-text2 0 7A5 F4A 8 2
-text3 0 7AD F5A B 2
-maintext 0 7D0 FA0 2C 2
-cstackCOMMON 1 70 70 7 1
+cinit 0 7F0 FE0 10 2
+text1 0 701 E02 53 2
+text2 0 6E9 DD2 18 2
+text3 0 6C9 D92 8 2
+text4 0 6D1 DA2 B 2
+maintext 0 754 EA8 9C 2
+cstackCOMMON 1 70 70 9 1
+cstackBANK0 1 20 20 20 1
+inittext 0 6C3 D86 6 2
 stringtext1 0 800 1000 C8 2
 reset_vec 0 0 0 4 2
+idataBANK0 0 6DC DB8 D 2
 config 0 8007 1000E 2 2
 # OTES Section
 # This section contains data of all the note-psects.  The beginning of the section

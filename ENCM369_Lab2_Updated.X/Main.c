@@ -11,7 +11,8 @@ void main(void)
 {
     // Set the system clock speed to 32MHz.
     OSCCON = 0xF4;
-    
+    int index = 0;
+    char period[] = {45, 43, 40, 38, 36, 34, 32, 30, 29, 27, 26, 24, 23};
     //Wait for the clock switch until the "HF Oscillator Ready" flag is true.
     while(OSCSTATbits.HFIOFR == 0);
     
@@ -30,13 +31,33 @@ void main(void)
     //DAC1REFL = 0x00;
     //Configure Timer2 to have a period of 100 microseconds.
     //Calling Lab2_ConfigureTimer2 again can set a new period.
-    Lab2_ConfigureTimer2(100);
-    
+    Lab2_ConfigureTimer2(period[index++]);
+    int swi = 1;
     //This loop runs based on Timer2 rather than __delay_ms or __delay_us
+    
+    /*PIC User Manual Chapter 13: Interrupts
+     This is our configuration to set up RC6 as a interrupt on rising edge logic*/
+    INTCONbits.IOCIE = 1; //Tells Processor to allow for interrupts to occur.
+    IOCCPbits.IOCCP6 = 1; //Assigns RC6 to interrupt on rising edge.
+    
     while(1)
     {
         //DACLD = 0x01;
-
+        
+        if(IOCCFbits.IOCCF6 == 1 && swi == 1) // If flag is true and switch is set to off
+        {
+            IOCCFbits.IOCCF6 = 0; // Removes flag
+            Lab2_ConfigureTimer2(period[index++]);
+            swi = 0;
+        }
+        else if(IOCCFbits.IOCCF6 == 1 && swi == 0) // If flag is true and switch is set to on
+        {
+            IOCCFbits.IOCCF6 = 0; // Removes flag
+            Lab2_ConfigureTimer2(period[index++]);
+            swi = 1;
+        }
+        index = index % 13;
+        
         // Call the SineArray function to make sure it runs quickly
         // enough not to stall the DAC output. Use this in Exercise B.
         short x = SineArray();

@@ -19430,7 +19430,8 @@ void main(void)
 {
 
     OSCCON = 0xF4;
-
+    int index = 0;
+    char period[] = {45, 43, 40, 38, 36, 34, 32, 30, 29, 27, 26, 24, 23};
 
     while(OSCSTATbits.HFIOFR == 0);
 
@@ -19449,12 +19450,32 @@ void main(void)
 
 
 
-    Lab2_ConfigureTimer2(100);
+    Lab2_ConfigureTimer2(period[index++]);
+    int swi = 1;
 
+
+
+
+    INTCONbits.IOCIE = 1;
+    IOCCPbits.IOCCP6 = 1;
 
     while(1)
     {
 
+
+        if(IOCCFbits.IOCCF6 == 1 && swi == 1)
+        {
+            IOCCFbits.IOCCF6 = 0;
+            Lab2_ConfigureTimer2(period[index++]);
+            swi = 0;
+        }
+        else if(IOCCFbits.IOCCF6 == 1 && swi == 0)
+        {
+            IOCCFbits.IOCCF6 = 0;
+            Lab2_ConfigureTimer2(period[index++]);
+            swi = 1;
+        }
+        index = index % 13;
 
 
 
@@ -19510,7 +19531,7 @@ short SineArray(void)
 
     return Array[ArrayIndex++];
 }
-# 119 "Main.c"
+# 140 "Main.c"
 void Lab2_writeDAC(short write_value)
 {
     DAC1REFH = write_value >> 8;
