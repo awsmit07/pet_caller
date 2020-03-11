@@ -32,5 +32,7 @@ void Lab2_ConfigureDAC1(void);
 //           If pin RB3 is low, output an ascending sawtooth wave. /|/|/|/|
 void Lab2_OutputSawtooth(void);
 
+void Lab2_writeDAC(short write_value);
+
 #endif	/* LAB2_LIBRARY_H */
 

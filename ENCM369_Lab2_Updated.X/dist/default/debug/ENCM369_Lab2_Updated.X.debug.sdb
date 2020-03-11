@@ -1,0 +1,136 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F1778 ]
+[d frameptr 6 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"10 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+[v _main main `(v  1 e 1 0 ]
+"67
+[v _SineArray SineArray `(s  1 e 2 0 ]
+"119
+[v _Lab2_writeDAC Lab2_writeDAC `(v  1 e 1 0 ]
+"7 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+[v _Lab2_ConfigureTimer2 Lab2_ConfigureTimer2 `(v  1 e 1 0 ]
+[s S25 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSP1IF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 TMR1GIF 1 0 :1:7 
+]
+"657 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f1778.h
+[s S34 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 CCPIF 1 0 :1:2 
+]
+[u S37 . 1 `S25 1 . 1 0 `S34 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES37  1 e 1 @17 ]
+[s S125 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+`uc 1 TRISA7 1 0 :1:7 
+]
+"1652
+[u S134 . 1 `S125 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES134  1 e 1 @140 ]
+[s S85 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"1776
+[u S94 . 1 `S85 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES94  1 e 1 @142 ]
+"2410
+[v _OSCCON OSCCON `VEuc  1 e 1 @155 ]
+[s S64 . 1 `uc 1 HFIOFS 1 0 :1:0 
+`uc 1 LFIOFR 1 0 :1:1 
+`uc 1 MFIOFR 1 0 :1:2 
+`uc 1 HFIOFL 1 0 :1:3 
+`uc 1 HFIOFR 1 0 :1:4 
+`uc 1 OSTS 1 0 :1:5 
+`uc 1 PLLR 1 0 :1:6 
+`uc 1 SOSCR 1 0 :1:7 
+]
+"2499
+[u S73 . 1 `S64 1 . 1 0 ]
+[v _OSCSTATbits OSCSTATbits `VES73  1 e 1 @156 ]
+[s S146 . 1 `uc 1 ANSA0 1 0 :1:0 
+`uc 1 ANSA1 1 0 :1:1 
+`uc 1 ANSA2 1 0 :1:2 
+`uc 1 ANSA3 1 0 :1:3 
+`uc 1 ANSA4 1 0 :1:4 
+`uc 1 ANSA5 1 0 :1:5 
+]
+"3737
+[u S153 . 1 `S146 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES153  1 e 1 @396 ]
+[s S106 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 ANSC2 1 0 :1:2 
+`uc 1 ANSC3 1 0 :1:3 
+`uc 1 ANSC4 1 0 :1:4 
+`uc 1 ANSC5 1 0 :1:5 
+`uc 1 ANSC6 1 0 :1:6 
+`uc 1 ANSC7 1 0 :1:7 
+]
+"3838
+[u S114 . 1 `S106 1 . 1 0 ]
+[v _ANSELCbits ANSELCbits `VES114  1 e 1 @398 ]
+"11506
+[v _T2PR T2PR `VEuc  1 e 1 @1172 ]
+"11560
+[v _T2CON T2CON `VEuc  1 e 1 @1173 ]
+"11834
+[v _T2CLKCON T2CLKCON `VEuc  1 e 1 @1175 ]
+"13088
+[v _DACLD DACLD `VEuc  1 e 1 @1421 ]
+"13121
+[v _DAC1CON0 DAC1CON0 `VEuc  1 e 1 @1422 ]
+"13346
+[v _DAC1REFL DAC1REFL `VEuc  1 e 1 @1423 ]
+"13768
+[v _DAC1REFH DAC1REFH `VEuc  1 e 1 @1424 ]
+"10 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"42
+[v main@x x `s  1 a 2 4 ]
+"61
+} 0
+"67
+[v _SineArray SineArray `(s  1 e 2 0 ]
+{
+"70
+[v SineArray@Array Array `DC[100]s  1 s 200 Array ]
+"86
+[v SineArray@ArrayIndex ArrayIndex `uc  1 s 1 ArrayIndex ]
+"93
+} 0
+"119
+[v _Lab2_writeDAC Lab2_writeDAC `(v  1 e 1 0 ]
+{
+[v Lab2_writeDAC@write_value write_value `s  1 p 2 0 ]
+"124
+} 0
+"7 C:\Users\jadef\Documents\GitHub\pet_caller\ENCM369_Lab2_Updated.X\Timer.c
+[v _Lab2_ConfigureTimer2 Lab2_ConfigureTimer2 `(v  1 e 1 0 ]
+{
+[v Lab2_ConfigureTimer2@TimerPeriod_us TimerPeriod_us `uc  1 a 1 wreg ]
+[v Lab2_ConfigureTimer2@TimerPeriod_us TimerPeriod_us `uc  1 a 1 wreg ]
+"11
+[v Lab2_ConfigureTimer2@TimerPeriod_us TimerPeriod_us `uc  1 a 1 0 ]
+"30
+} 0

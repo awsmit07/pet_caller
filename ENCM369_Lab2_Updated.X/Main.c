@@ -20,8 +20,14 @@ void main(void)
     ANSELCbits.ANSC6 = 0;
         
     //Configure DAC1. Replace this with your own code in Exercise A.
-    Lab2_ConfigureDAC1();
+    //Lab2_ConfigureDAC1();
+    TRISAbits.TRISA2 = 0;
+    ANSELAbits.ANSA2 = 1;
     
+    DAC1CON0 = 0xB0;    //0b01000000
+    //DACLD = 0x01;
+    //DAC1REFH = 0x00;
+    //DAC1REFL = 0x00;
     //Configure Timer2 to have a period of 100 microseconds.
     //Calling Lab2_ConfigureTimer2 again can set a new period.
     Lab2_ConfigureTimer2(100);
@@ -29,13 +35,20 @@ void main(void)
     //This loop runs based on Timer2 rather than __delay_ms or __delay_us
     while(1)
     {
+        //DACLD = 0x01;
+
         // Call the SineArray function to make sure it runs quickly
         // enough not to stall the DAC output. Use this in Exercise B.
         short x = SineArray();
         
         // Output an ascending sawtooth wave, or a descending sawtooth wave if
         // pin RB6 is high. Replace this in Exercise B.
-        Lab2_OutputSawtooth(); 
+        //Lab2_OutputSawtooth(); 
+        Lab2_writeDAC(x);
+        
+//        __delay_ms(10);
+//        Lab2_writeDAC(0);
+//        __delay_ms(10);
         
         // Wait until the timer has expired by checking the interrupt flag.
         while(!PIR1bits.TMR2IF);
@@ -77,4 +90,35 @@ short SineArray(void)
     
     // Return the Array pointed to by ArrayIndex, and then increment ArrayIndex.
     return Array[ArrayIndex++];
+}
+
+/* lab stuff
+    Q1
+ * 2.5456 Volts
+ * 
+ * Q4
+ * PCL: 0xE5 then 0xE5
+ * BSR: 0x0B then 0x0B then 0x00
+ * WREG: 0xF4 then 0xF4 then 0x3B
+ * TRISA: 0xFF then 0xFF
+ * DAC1CON0: 0xA0 then 0xA0
+ * 
+ * SAW TOOTH VALUE:
+ * measured values:
+ * 8mV per division
+ * 10kHz per division
+ * 
+ * calculated average:
+ * 9.44kHz per division
+ * 4.88mV per division
+ * 
+ * 
+ * 
+ */
+
+void Lab2_writeDAC(short write_value)
+{
+    DAC1REFH = write_value >> 8;
+    DAC1REFL = write_value;
+    DACLD = 0x01;
 }
