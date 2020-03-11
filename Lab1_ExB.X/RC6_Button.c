@@ -43,5 +43,6 @@ void RC6button(unsigned char a)
     else if(PORTCbits.RC6 == 1 && swi == 0)
     {
         PORTB = 0;
+        swi = 1;
     }
 }
