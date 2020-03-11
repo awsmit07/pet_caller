@@ -33,7 +33,7 @@ void main(void) {
 void RC6button(unsigned char a)
 {
     /*Need to refine code so that the switch is uniquely set to a bit, right now it resets all bits in PORTB to 0
-     we want to make it so that it only sets bits a to zero*/
+     we want to make it so that it only sets bits (a) to zero*/
     static int swi = 1;
     if(PORTCbits.RC6 == 1 && swi == 1)
     {
