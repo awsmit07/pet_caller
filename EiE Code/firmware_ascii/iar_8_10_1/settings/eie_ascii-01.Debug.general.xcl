@@ -1,0 +1,17 @@
+"C:\Users\jadef\EiE\arm\bin\armproc.dll" 
+
+"C:\Users\jadef\EiE\arm\bin\armjlink2.dll" 
+
+"C:\Users\jadef\Documents\GitHub\pet_caller\razor_sam3u2\firmware_ascii\iar_8_10_1\Debug\Exe\eie_ascii-01.out" 
+
+--plugin "C:\Users\jadef\EiE\arm\bin\armbat.dll" 
+
+--rtc_enable 
+
+--device_macro "C:\Users\jadef\EiE\arm\config\debugger\Atmel\SAM3U.dmac" 
+
+--flash_loader "C:\Users\jadef\EiE\arm\config\flashloader\Atmel\sam3u2c\sam3u2c-flash.board" 
+
+
+
+
