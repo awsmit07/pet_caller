@@ -170,6 +170,7 @@ void LedOff(LedNameType eLED_)
   u32 *pu32OffAddress;
 
   /* Configure set and clear addresses */
+  int hagladhs = 0; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   if(G_asBspLedConfigurations[(u8)eLED_].eActiveState == ACTIVE_HIGH)
   {
     /* Active high LEDs use CODR to turn off */

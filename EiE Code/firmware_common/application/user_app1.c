@@ -246,9 +246,13 @@ static void Wait(void) // waits until the user presses a button,
   else if (WasButtonPressed(BUTTON3))
   { 
     // calls "control_values" and sets the argument to 1 for down
-    //UserApp1_pfStateMachine = Connecting;                     // simulates a connection   
+
+
+    UserApp1_pfStateMachine = Connecting;                     // simulates a connection, testing
+
+
     control_values(1);
-    W_SubState = 1;
+    W_SubState = 2;                      // should normally be 1 except for this testing mode
     ButtonAcknowledge(BUTTON3);
   }
 
@@ -274,7 +278,50 @@ static void Connecting(void)  // confirm that the pet is waiting for a set amoun
 
 static void Alarm(void)    // uses an audio cue to alert the user
 {
-
+  LedOn(WHITE);
+  
+  static u32 start_alarm = 0;
+  static u32 current_note = 0;
+  static int A_On = 1;
+  
+  // song
+  if (start_alarm == 0)
+  {
+    start_alarm = G_u32SystemTime1ms;
+    current_note = 0;
+  }
+  if (current_note == 0)
+    current_note += play_note(NOTE_C4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
+  else if (current_note == 1)
+    current_note += play_note(NOTE_D4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
+  else if (current_note == 2)
+    current_note += play_note(NOTE_G4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
+  else if (current_note == 3)
+    current_note += play_note(NOTE_G4, EIGHTH_NOTE, STACCATO_NOTE_TIME);
+  else if (current_note == 4)
+    current_note += play_note(NOTE_D4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
+  else if (current_note == 5)
+    current_note += play_note(NOTE_G4, EIGHTH_NOTE, HOLD_NOTE_ADJUSTMENT);
+  
+  
+  
+  if ((G_u32SystemTime1ms - start_alarm) % REPEAT_ALARM == (REPEAT_ALARM - 1))
+  {
+    current_note = 0;
+  }
+  
+  if (WasButtonPressed(BUTTON0) || WasButtonPressed(BUTTON1) || WasButtonPressed(BUTTON2) || WasButtonPressed(BUTTON3))
+  {
+    A_On = 1;
+    start_alarm = 0;
+    PWMAudioOff(BUZZER1);       // don't put turn on buzzer after this line 
+    LedOff(WHITE);
+    UserApp1_pfStateMachine = Idle;
+    ButtonAcknowledge(BUTTON0);
+    ButtonAcknowledge(BUTTON1);
+    ButtonAcknowledge(BUTTON2);
+    ButtonAcknowledge(BUTTON3);
+  }
 }
 
 
@@ -333,4 +380,29 @@ void control_values(int UpOrDown)
   }
 }
 
+int play_note(u16 note, u16 length, u16 type)
+{
+  static u32 start_time = 0;
+  static int run_once = 1;
+  if (run_once == 1)
+  {
+    start_time = G_u32SystemTime1ms;
+    run_once = 0;
+  }
+  if (G_u32SystemTime1ms - start_time < (length - type))
+  {
+    PWMAudioSetFrequency(BUZZER1, note);
+    PWMAudioOn(BUZZER1);
+  }
+  else
+  {
+    PWMAudioOff(BUZZER1);
+  }
+  if (G_u32SystemTime1ms - start_time >= length)
+  {
+    run_once = 1;
+    return 1;
+  }
+  return 0;
+}
 

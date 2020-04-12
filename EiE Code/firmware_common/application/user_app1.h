@@ -23,6 +23,7 @@ Function Declarations
 void control_values(int UpOrDown);  // will change the volume or range depending on Status.adjust_volume_or_range
                                                     // UpOrDown is 0 when Up, is 1 when Down
 
+int play_note(u16 note, u16 length, u16 type);
 //u8 * convert_int_to_string(int value);    // will be called by a variety of states    // gave up on this function since it gets used only 3 seperate times
 /*------------------------------------------------------------------------------------------------------------------*/
 /*! @publicsection */                                                                                            
@@ -64,8 +65,55 @@ Constants / Definitions
 
 #define display_the_time 1  // just for testing
 
+#define REPEAT_ALARM 5000       // in miliseconds
+
 #endif /* __USER_APP1_H */
 
+
+//notes
+#define MESURE_TIME               (u16)2400         // is very important in making timing
+
+#define FULL_NOTE                 (u16)(MEASURE_TIME)
+#define HALF_NOTE                 (u16)(MEASURE_TIME / 2)
+#define QUARTER_NOTE              (u16)(MEASURE_TIME / 4)
+#define EIGHTH_NOTE               (u16)(MEASURE_TIME / 8)
+#define SIXTEENTH_NOTE            (u16)(MEASURE_TIME / 16)
+
+/* Note length adjustments */
+#define REGULAR_NOTE_ADJUSTMENT   (u16)50
+#define STACCATO_NOTE_TIME        (u16)75
+#define HOLD_NOTE_ADJUSTMENT      (u16)0
+
+#define NOTE_C3                   (u16)131
+#define NOTE_C3_SHARP             (u16)139
+#define NOTE_D3_FLAT              (u16)139
+#define NOTE_D3                   (u16)147
+#define NOTE_D3_SHARP             (u16)156
+#define NOTE_E3_FLAT              (u16)156
+#define NOTE_E3                   (u16)165
+#define NOTE_F3                   (u16)175
+#define NOTE_F3_SHARP             (u16)185
+#define NOTE_G3_FLAT              (u16)185
+#define NOTE_G3                   (u16)196
+#define NOTE_G3_SHARP             (u16)208
+#define NOTE_A3                   (u16)220
+#define NOTE_A3_SHARP             (u16)233
+#define NOTE_B3                   (u16)245
+#define NOTE_C4                   (u16)262  /* Middle C */
+#define NOTE_C4_SHARP             (u16)277
+#define NOTE_D4_FLAT              (u16)277
+#define NOTE_D4                   (u16)294
+#define NOTE_D4_SHARP             (u16)311
+#define NOTE_E4_FLAT              (u16)311
+#define NOTE_E4                   (u16)330
+#define NOTE_F4                   (u16)349
+#define NOTE_F4_SHARP             (u16)370
+#define NOTE_G4_FLAT              (u16)370
+#define NOTE_G4                   (u16)392
+#define NOTE_G4_SHARP             (u16)415
+#define NOTE_A4                   (u16)440
+#define NOTE_A4_SHARP             (u16)466
+#define NOTE_B4                   (u16)494
 /*--------------------------------------------------------------------------------------------------------------------*/
 /* End of File                                                                                                        */
 /*--------------------------------------------------------------------------------------------------------------------*/
