@@ -21,10 +21,14 @@ static struct TheStatus{  // global structure call values by:     Status.volume
 /**********************************************************************************************************************
 Function Declarations
 **********************************************************************************************************************/
-void control_values(int UpOrDown);    // will change the volume or range depending on Status.adjust_volume_or_range
+void control_values(int UpOrDown);  // will change the volume or range depending on Status.adjust_volume_or_range
                                                     // UpOrDown is 0 when Up, is 1 when Down
 
-u8 * convert_int_to_string(int value);    // will be called by a variety of states
+int display_and_change_values(int display_state, int current_state);   // will run the changing of the range and vol also the display of their values
+                                                        // the argument and the return value is going to be the substate of the function
+                                                        // current_state is just the state the function is called from 1 for Wait, 0 for idle
+
+//u8 * convert_int_to_string(int value);    // will be called by a variety of states    // gave up on this function since it gets used only 3 seperate times
 /*------------------------------------------------------------------------------------------------------------------*/
 /*! @publicsection */                                                                                            
 /*--------------------------------------------------------------------------------------------------------------------*/
