@@ -81,12 +81,73 @@ static void Idle(void)  // waits until the user presses a button,
 {
   LedOn(RED); // just an indicator that this state is being run
   static int Idle_SubState = 1;
-  static int I_displaystate = 1;
+  
   if (Idle_SubState == 1)
   {
+     
     LcdMessage(LINE1_START_ADDR, "SIG OFF   TIME 00:00");
+    u8 vol[4];
+    vol[0] = TheStatus.volume / 100 + 48;
+    vol[1] = TheStatus.volume % 100 / 10 + 48;
+    vol[2] = TheStatus.volume % 10 + 48;
+
+    u8 rng[2];
+    rng[0] = TheStatus.range / 10 + 48;
+    rng[1] = TheStatus.range % 10 + 48;
+    
+    LcdMessage(LINE2_START_ADDR + 4, vol);
+    LcdMessage(LINE2_START_ADDR + 15, rng); 
+    LcdMessage(LINE2_START_ADDR, "VOL ");
+    LcdMessage(LINE2_START_ADDR + 7, "   RNGE ");
+    LcdMessage(LINE2_START_ADDR + 17, "   ");
+    Idle_SubState = 0;
   }
-  I_displaystate = display_and_change_values(I_displaystate, 0);
+
+  if (WasButtonPressed(BUTTON0))
+  {
+    UserApp1_pfStateMachine = Wait;
+    Idle_SubState = 1;
+    ButtonAcknowledge(BUTTON0);
+    LedOff(RED);
+  }
+
+  else if (WasButtonPressed(BUTTON1))
+  {
+    // will switch the value of Status.adjust_volume_or_range depending on the current value if BUTTON1 is pressed
+    
+    static u32 display_timer = 0;
+    if ( display_timer == 0 )
+    {
+      TheStatus.adjust_volume_or_range = (TheStatus.adjust_volume_or_range + 1) % 2;        // switches the volume or range mode
+      display_timer = G_u32SystemTime1ms;
+      LcdMessage(LINE1_START_ADDR, "                    ");
+      LcdMessage(LINE2_START_ADDR, "                    ");
+      LcdMessage(LINE1_START_ADDR + 2, TheStatus.label[TheStatus.adjust_volume_or_range]);
+      LcdMessage(LINE1_START_ADDR + 8, " Adjustmet");
+      LcdMessage(LINE2_START_ADDR + 8, "Mode");
+    }
+    else if (G_u32SystemTime1ms >=  display_timer + display_duration)
+    {
+      display_timer = 0;
+      Idle_SubState = 1;   // will then display the normal display
+      ButtonAcknowledge(BUTTON1);
+    }
+  }
+  else if (WasButtonPressed(BUTTON2))
+  {
+    // calls "control_values" and sets the argument to 0 for up
+    control_values(0);
+    Idle_SubState = 1;
+    ButtonAcknowledge(BUTTON2);
+  }
+     
+  else if (WasButtonPressed(BUTTON3))
+  { 
+    // calls "control_values" and sets the argument to 1 for down
+    control_values(1);
+    Idle_SubState = 1;
+    ButtonAcknowledge(BUTTON3);
+  }
 }
 
 
@@ -98,16 +159,18 @@ static void Wait(void) // waits until the user presses a button,
                           // will switch to Wait state if BUTTON0 is pressed
 {
   LedOn(ORANGE); //to indicate the Wait is being run
-  static int W_SubState = 1;
-  static int W_displaystate = 1;
-  if (W_SubState == 1)
+  static int W_SubState = 2;
+  if (G_u32SystemTime1ms % 200 == 5 && 0)  // checks the connection every 0.2 seconds  // press button3 to simulate connection, for now
+  {
+    UserApp1_pfStateMachine = Connecting;
+  }
+  if (W_SubState == 2)  // runs once when state is first called
   {
     TheStatus.reference_time = G_u32SystemTime1s;
-    W_SubState = 0;
+    W_SubState = 1;
   }
 
-  
-  if (G_u32SystemTime1ms % 200 == 0)   // updates the displayed time every 0.2 seconds
+  if (G_u32SystemTime1ms % 200 == 0 && !(WasButtonPressed(BUTTON1)))   // updates the displayed time every 0.2 seconds
     {
       u8 min[2];
       min[0] = (G_u32SystemTime1s - TheStatus.reference_time) / 60 / 10 + 48;
@@ -122,23 +185,73 @@ static void Wait(void) // waits until the user presses a button,
       LcdMessage(LINE1_START_ADDR + 17, ":");
     }
   
-  W_displaystate = display_and_change_values(W_displaystate, 1);
-  
+  if (W_SubState == 1)
+  {
+     
+    u8 vol[4];
+    vol[0] = TheStatus.volume / 100 + 48;
+    vol[1] = TheStatus.volume % 100 / 10 + 48;
+    vol[2] = TheStatus.volume % 10 + 48;
+
+    u8 rng[2];
+    rng[0] = TheStatus.range / 10 + 48;
+    rng[1] = TheStatus.range % 10 + 48;
+    
+    LcdMessage(LINE2_START_ADDR + 4, vol);
+    LcdMessage(LINE2_START_ADDR + 15, rng); 
+    LcdMessage(LINE2_START_ADDR, "VOL ");
+    LcdMessage(LINE2_START_ADDR + 7, "   RNGE ");
+    LcdMessage(LINE2_START_ADDR + 17, "   ");
+    W_SubState = 0;
+  }
+
   if (WasButtonPressed(BUTTON0))
   {
     UserApp1_pfStateMachine = Idle;
+    W_SubState = 2;
     ButtonAcknowledge(BUTTON0);
-    ButtonAcknowledge(BUTTON1);
-    ButtonAcknowledge(BUTTON2);
-    ButtonAcknowledge(BUTTON3);
-    
-    W_SubState = 1;
     LedOff(ORANGE);
   }
 
-  if (WasButtonPressed(BUTTON3))  // simulates the connection of the device
+  else if (WasButtonPressed(BUTTON1))
   {
+    // will switch the value of Status.adjust_volume_or_range depending on the current value if BUTTON1 is pressed
+    
+    static u32 display_timer = 0;
+    if ( display_timer == 0 )
+    {
+      TheStatus.adjust_volume_or_range = (TheStatus.adjust_volume_or_range + 1) % 2;        // switches the volume or range mode
+      display_timer = G_u32SystemTime1ms;
+      LcdMessage(LINE1_START_ADDR, "                    ");
+      LcdMessage(LINE2_START_ADDR, "                    ");
+      LcdMessage(LINE1_START_ADDR + 2, TheStatus.label[TheStatus.adjust_volume_or_range]);
+      LcdMessage(LINE1_START_ADDR + 8, " Adjustmet");
+      LcdMessage(LINE2_START_ADDR + 8, "Mode");
+    }
+    else if (G_u32SystemTime1ms >=  display_timer + display_duration)
+    {
+      display_timer = 0;
+      W_SubState = 1;   // will then display the normal display
+      ButtonAcknowledge(BUTTON1);
+    }
   }
+  else if (WasButtonPressed(BUTTON2))
+  {
+    // calls "control_values" and sets the argument to 0 for up
+    control_values(0);
+    W_SubState = 1;
+    ButtonAcknowledge(BUTTON2);
+  }
+     
+  else if (WasButtonPressed(BUTTON3))
+  { 
+    // calls "control_values" and sets the argument to 1 for down
+    //UserApp1_pfStateMachine = Connecting;                     // simulates a connection   
+    control_values(1);
+    W_SubState = 1;
+    ButtonAcknowledge(BUTTON3);
+  }
+
 
 }
 
@@ -149,6 +262,11 @@ static void Wait(void) // waits until the user presses a button,
 static void Connecting(void)  // confirm that the pet is waiting for a set amount of time
 {
   // has a local varile that takes in the current time of the program and waits 10 seconds from that time
+  // could check the signal more often to try induce a strong of weak signal
+  if (1)  // connection works
+  {
+    UserApp1_pfStateMachine = Alarm;
+  }
 }
 
 
@@ -213,91 +331,6 @@ void control_values(int UpOrDown)
     }
 
   }
-}
-
-
-
-
-int display_and_change_values(int display_state, int current_state)  // current_state is 1 if called from wait or 0 if called from idle
-{ 
-  if (display_state == 1)
-  {
-    u8 vol[4];
-    vol[0] = TheStatus.volume / 100 + 48;
-    vol[1] = TheStatus.volume % 100 / 10 + 48;
-    vol[2] = TheStatus.volume % 10 + 48;
-
-    u8 rng[2];
-    rng[0] = TheStatus.range / 10 + 48;
-    rng[1] = TheStatus.range % 10 + 48;
-    
-    LcdMessage(LINE2_START_ADDR + 4, vol);
-    LcdMessage(LINE2_START_ADDR + 15, rng); 
-    LcdMessage(LINE2_START_ADDR, "VOL ");
-    LcdMessage(LINE2_START_ADDR + 7, "   RNGE ");
-    LcdMessage(LINE2_START_ADDR + 17, "   ");
-    display_state = 0;
-  }
-
-  if (WasButtonPressed(BUTTON0))
-  {
-    if (current_state == 0)
-    {
-      UserApp1_pfStateMachine = Wait;
-    }
-    else if (current_state == 1)
-    {
-      UserApp1_pfStateMachine = Idle;
-    }
-    else
-    {
-      UserApp1_pfStateMachine = UserApp1SM_Error;
-    }
-    
-    ButtonAcknowledge(BUTTON0);
-    LedOff(RED);
-  }
-
-  else if (WasButtonPressed(BUTTON1))
-  {
-    // will switch the value of Status.adjust_volume_or_range depending on the current value if BUTTON1 is pressed
-    
-    static u32 display_timer = 0;
-    if ( display_timer == 0 )
-    {
-      
-      TheStatus.adjust_volume_or_range = (TheStatus.adjust_volume_or_range + 1) % 2;        // switches the volume or range mode
-      display_timer = G_u32SystemTime1ms;
-      LcdMessage(LINE1_START_ADDR, "                    ");
-      LcdMessage(LINE2_START_ADDR, "                    ");
-      LcdMessage(LINE1_START_ADDR + 2, TheStatus.label[TheStatus.adjust_volume_or_range]);
-      LcdMessage(LINE1_START_ADDR + 8, " Adjustmet");
-      LcdMessage(LINE2_START_ADDR + 8, "Mode");
-    }
-    else if (G_u32SystemTime1ms >=  display_timer + display_duration)
-    {
-      display_timer = 0;
-      display_state = 1;   // will then display the normal display
-      ButtonAcknowledge(BUTTON1);
-    }
-  }
-  else if (WasButtonPressed(BUTTON2))
-  {
-    // calls "control_values" and sets the argument to 0 for up
-    control_values(0);
-    display_state = 1;
-    ButtonAcknowledge(BUTTON2);
-  }
-     
-  else if (WasButtonPressed(BUTTON3))
-  { 
-    // calls "control_values" and sets the argument to 1 for down
-    control_values(1);
-    display_state = 1;
-    ButtonAcknowledge(BUTTON3);
-  }
-
-  return display_state;
 }
 
 
