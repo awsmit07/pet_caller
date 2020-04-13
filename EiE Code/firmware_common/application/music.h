@@ -4,7 +4,7 @@
 ***********************************************************************************************************************/
 
 /* Note lengths */
-#define MEASURE_TIME              (u16)2000  /* Time in ms for 1 measure (1 full note) - should be divisible by 16 */
+//#define MEASURE_TIME              (u16)2000  /* Time in ms for 1 measure (1 full note) - should be divisible by 16 */ //MOVED TO user_app1.h since its easier to modify the value
 #define FULL_NOTE                 (u16)(MEASURE_TIME)
 #define HALF_NOTE                 (u16)(MEASURE_TIME / 2)
 #define QUARTER_NOTE              (u16)(MEASURE_TIME / 4)

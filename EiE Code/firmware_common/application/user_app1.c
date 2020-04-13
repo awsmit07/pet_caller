@@ -282,7 +282,8 @@ static void Alarm(void)    // uses an audio cue to alert the user
   
   static u32 start_alarm = 0;
   static u32 current_note = 0;
-  static int A_On = 1;
+
+  static int song_length = 47;  // number of notes in the song
   
   // song
   if (start_alarm == 0)
@@ -290,20 +291,40 @@ static void Alarm(void)    // uses an audio cue to alert the user
     start_alarm = G_u32SystemTime1ms;
     current_note = 0;
   }
-  if (current_note == 0)
-    current_note += play_note(NOTE_C4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
-  else if (current_note == 1)
-    current_note += play_note(NOTE_D4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
-  else if (current_note == 2)
-    current_note += play_note(NOTE_G4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
-  else if (current_note == 3)
-    current_note += play_note(NOTE_G4, EIGHTH_NOTE, STACCATO_NOTE_TIME);
-  else if (current_note == 4)
-    current_note += play_note(NOTE_D4, EIGHTH_NOTE, REGULAR_NOTE_ADJUSTMENT);
-  else if (current_note == 5)
-    current_note += play_note(NOTE_G4, EIGHTH_NOTE, HOLD_NOTE_ADJUSTMENT);
   
+  //godfather theme
+  u16 note[] =    { A3,  D4,  F4,  E4,  D4,  F4,  D4,  E4,  //REMEBER TO UPDATE SONG LENGTH
+                    D4, A3S,  C4,  A3,  NO,  A3,  D4,  F4,
+                    E4,  D4,  F4,  D4,  E4,  D4,  A3, G3S,
+                    G3,  NO,  G3, A3S, C4S,  E4,  G3, A3S,
+                   C4S,  D4,  NO,  D3,  F3,  C4, A3S,  A3,
+
+                    C4, A3S, A3S,  A3,  A3, C3S,  D3};    
+       
+
+  u16 length[] =  { EN,  EN,  EN,  EN,  EN,  EN,  EN,  EN,
+                    EN,  EN,  EN,  HN,  EN,  EN,  EN,  EN,
+                    EN,  EN,  EN,  EN,  EN,  EN,  EN,  EN,
+                    HN,  EN,  EN,  EN,  EN,  HN,  EN,  EN,
+                    EN,  HN,  EN,  EN,  EN,  EN,  EN,  EN,
+
+                    EN,  EN,  EN,  EN,  EN,  EN,  HN,  EN};    
+        
+        
+  u16 type[] =    { HT,  HT,  HT,  HT,  HT,  HT,  HT,  HT, 
+                    HT,  HT,  HT,  RT,  HT,  HT,  HT,  HT,
+                    HT,  HT,  HT,  HT,  HT,  HT,  HT,  HT,
+                    RT,  HT,  HT,  HT,  HT,  RT,  HT,  HT,
+                    HT,  HT,  HT,  HT,  HT,  HT,  HT,  HT,
+
+                    HT,  RT,  HT,  RT,  HT,  HT,  HT,  HT,
+                    HT,  HT,  HT,  HT,  HT,  HT,  HT,  HT,
+                    HT,  HT,  HT,  HT,  HT,  HT,  HT,  HT};
   
+  if (current_note < song_length)
+  {
+    current_note += play_note(note[current_note], length[current_note], type[current_note]);
+  }
   
   if ((G_u32SystemTime1ms - start_alarm) % REPEAT_ALARM == (REPEAT_ALARM - 1))
   {
@@ -312,7 +333,6 @@ static void Alarm(void)    // uses an audio cue to alert the user
   
   if (WasButtonPressed(BUTTON0) || WasButtonPressed(BUTTON1) || WasButtonPressed(BUTTON2) || WasButtonPressed(BUTTON3))
   {
-    A_On = 1;
     start_alarm = 0;
     PWMAudioOff(BUZZER1);       // don't put turn on buzzer after this line 
     LedOff(WHITE);
@@ -389,7 +409,7 @@ int play_note(u16 note, u16 length, u16 type)
     start_time = G_u32SystemTime1ms;
     run_once = 0;
   }
-  if (G_u32SystemTime1ms - start_time < (length - type))
+  if ((G_u32SystemTime1ms - start_time < (length - type)))
   {
     PWMAudioSetFrequency(BUZZER1, note);
     PWMAudioOn(BUZZER1);
