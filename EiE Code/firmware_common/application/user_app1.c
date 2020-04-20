@@ -272,11 +272,32 @@ static void Wait(void) // waits until the user presses a button,
 
 
     control_values(1);
-    W_SubState = 2;                      // should normally be 1 except for this testing mode
+    W_SubState = 1;                      // should normally be 1 except for this testing mode
     ButtonAcknowledge(BUTTON3);
   }
-  else if (AlarmOn && (WasButtonPressed(BUTTON0) || WasButtonPressed(BUTTON1) || WasButtonPressed(BUTTON2) || WasButtonPressed(BUTTON3) || BTN0 || BTN1 || BTN2 || BTN3))
+  else if (AlarmOn && ( WasButtonPressed(BUTTON0) || WasButtonPressed(BUTTON1) || WasButtonPressed(BUTTON2) || WasButtonPressed(BUTTON3) || BTN0 || BTN1 || BTN2 || BTN3))
   {
+    if(WasButtonPressed(BUTTON0))
+    {
+      BTN0 = TRUE;
+    }
+    if(WasButtonPressed(BUTTON1))
+    {
+      BTN1 = TRUE;
+    }
+    if(WasButtonPressed(BUTTON2))
+    {
+      BTN2 = TRUE;
+    }
+    if(WasButtonPressed(BUTTON3))
+    {
+      BTN3 = TRUE;
+    }
+    ButtonAcknowledge(BUTTON0);
+    ButtonAcknowledge(BUTTON1);
+    ButtonAcknowledge(BUTTON2);
+    ButtonAcknowledge(BUTTON3);
+    W_SubState = 2;
     UserApp1_pfStateMachine = Idle;
   }
 
