@@ -23,6 +23,15 @@ extern volatile u32 G_u32SystemTime1s;                    /*!< @brief From main.
 extern volatile u32 G_u32SystemFlags;                     /*!< @brief From main.c */
 extern volatile u32 G_u32ApplicationFlags;                /*!< @brief From main.c */
 
+extern bool BTN0;
+extern bool BTN1;
+extern bool BTN2;
+extern bool BTN3;
+
+extern bool AlarmOn;
+
+bool SigOn = FALSE;
+
 static fnCode_type UserApp1_pfStateMachine;               /*!< @brief The state machine function pointer */
 //static u32 UserApp1_u32Timeout;                           /*!< @brief Timeout counter used across states */
 
@@ -38,7 +47,7 @@ void UserApp1Initialize(void)
   LedOff(GREEN);
   LedOff(YELLOW);
   LedOff(ORANGE);
-  LedOff(RED);
+  LedOn(RED);
   
       // since we just have one set of values to display we will only need to overlap
       // the values here. 
@@ -79,12 +88,13 @@ static void Idle(void)  // waits until the user presses a button,
                                   // if BUTTON1 is pressed
                           // will switch to Wait state if BUTTON0 is pressed
 {
-  LedOn(RED); // just an indicator that this state is being run
+  SigOn = FALSE;
   static int Idle_SubState = 1;
   
   if (Idle_SubState == 1)
   {
-     
+    LcdCommand(LCD_CLEAR_CMD);
+    for(u32 i = 0; i < 1000; i++);
     LcdMessage(LINE1_START_ADDR, "SIG OFF   TIME 00:00");
     u8 vol[4];
     vol[0] = TheStatus.volume / 100 + 48;
@@ -103,18 +113,20 @@ static void Idle(void)  // waits until the user presses a button,
     Idle_SubState = 0;
   }
 
-  if (WasButtonPressed(BUTTON0))
+  if (WasButtonPressed(BUTTON0) || BTN0)
   {
+    BTN0 = TRUE;
     UserApp1_pfStateMachine = Wait;
     Idle_SubState = 1;
     ButtonAcknowledge(BUTTON0);
     LedOff(RED);
+    LedOn(GREEN); //indicate the active state is going
   }
 
-  else if (WasButtonPressed(BUTTON1))
+  else if (WasButtonPressed(BUTTON1) || BTN1)
   {
     // will switch the value of Status.adjust_volume_or_range depending on the current value if BUTTON1 is pressed
-    
+    BTN1 = TRUE;
     static u32 display_timer = 0;
     if ( display_timer == 0 )
     {
@@ -133,16 +145,18 @@ static void Idle(void)  // waits until the user presses a button,
       ButtonAcknowledge(BUTTON1);
     }
   }
-  else if (WasButtonPressed(BUTTON2))
+  else if (WasButtonPressed(BUTTON2) || BTN2)
   {
+    BTN2 = TRUE;
     // calls "control_values" and sets the argument to 0 for up
     control_values(0);
     Idle_SubState = 1;
     ButtonAcknowledge(BUTTON2);
   }
      
-  else if (WasButtonPressed(BUTTON3))
+  else if (WasButtonPressed(BUTTON3)|| BTN3)
   { 
+    BTN3 = TRUE;
     // calls "control_values" and sets the argument to 1 for down
     control_values(1);
     Idle_SubState = 1;
@@ -158,7 +172,7 @@ static void Wait(void) // waits until the user presses a button,
                                   // if BUTTON1 is pressed
                           // will switch to Wait state if BUTTON0 is pressed
 {
-  LedOn(ORANGE); //to indicate the Wait is being run
+  SigOn = TRUE;
   static int W_SubState = 2;
   if (G_u32SystemTime1ms % 200 == 5 && 0)  // checks the connection every 0.2 seconds  // press button3 to simulate connection, for now
   {
@@ -179,6 +193,7 @@ static void Wait(void) // waits until the user presses a button,
       u8 sec[2];
       sec[0] = (G_u32SystemTime1s - TheStatus.reference_time) % 60 / 10 + 48;
       sec[1] = (G_u32SystemTime1s - TheStatus.reference_time) % 60 % 10 + 48;
+      
       LcdMessage(LINE1_START_ADDR + 15, min);
       LcdMessage(LINE1_START_ADDR + 18, sec); 
       LcdMessage(LINE1_START_ADDR, "SIG ON    TIME ");
@@ -205,16 +220,19 @@ static void Wait(void) // waits until the user presses a button,
     W_SubState = 0;
   }
 
-  if (WasButtonPressed(BUTTON0))
+  if ((WasButtonPressed(BUTTON0) || BTN0) && !(AlarmOn))
   {
+    BTN0 = TRUE;
     UserApp1_pfStateMachine = Idle;
     W_SubState = 2;
     ButtonAcknowledge(BUTTON0);
-    LedOff(ORANGE);
+    LedOff(GREEN);
+    LedOn(RED);
   }
 
-  else if (WasButtonPressed(BUTTON1))
+  else if ((WasButtonPressed(BUTTON1) || BTN1) && !(AlarmOn))
   {
+    BTN1 = TRUE;
     // will switch the value of Status.adjust_volume_or_range depending on the current value if BUTTON1 is pressed
     
     static u32 display_timer = 0;
@@ -235,25 +253,31 @@ static void Wait(void) // waits until the user presses a button,
       ButtonAcknowledge(BUTTON1);
     }
   }
-  else if (WasButtonPressed(BUTTON2))
+  else if ((WasButtonPressed(BUTTON2) || BTN2) && (!AlarmOn))
   {
+    BTN2 = TRUE;
     // calls "control_values" and sets the argument to 0 for up
     control_values(0);
     W_SubState = 1;
     ButtonAcknowledge(BUTTON2);
   }
      
-  else if (WasButtonPressed(BUTTON3))
+  else if ((WasButtonPressed(BUTTON3) || BTN3) && (!AlarmOn))
   { 
+    BTN3 = TRUE;
     // calls "control_values" and sets the argument to 1 for down
 
 
-    UserApp1_pfStateMachine = Connecting;                     // simulates a connection, testing
+    //UserApp1_pfStateMachine = Connecting;                     // simulates a connection, testing
 
 
     control_values(1);
     W_SubState = 2;                      // should normally be 1 except for this testing mode
     ButtonAcknowledge(BUTTON3);
+  }
+  else if (AlarmOn && (WasButtonPressed(BUTTON0) || WasButtonPressed(BUTTON1) || WasButtonPressed(BUTTON2) || WasButtonPressed(BUTTON3) || BTN0 || BTN1 || BTN2 || BTN3))
+  {
+    UserApp1_pfStateMachine = Idle;
   }
 
 

@@ -23,9 +23,9 @@ param([String]$debugfile = "");
 
 if ($debugfile -eq "")
 {
-& "C:\Users\jadef\EiE\common\bin\cspybat" -f "C:\Users\jadef\Documents\GitHub\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.general.xcl" --backend -f "C:\Users\jadef\Documents\GitHub\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.driver.xcl" 
+& "C:\Program Files\IAR Systems\EWARM_KS_8_10\common\bin\cspybat" -f "C:\github\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.general.xcl" --backend -f "C:\github\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.driver.xcl" 
 }
 else
 {
-& "C:\Users\jadef\EiE\common\bin\cspybat" -f "C:\Users\jadef\Documents\GitHub\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.general.xcl" --debug_file=$debugfile --backend -f "C:\Users\jadef\Documents\GitHub\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.driver.xcl" 
+& "C:\Program Files\IAR Systems\EWARM_KS_8_10\common\bin\cspybat" -f "C:\github\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.general.xcl" --debug_file=$debugfile --backend -f "C:\github\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\settings\eie_ascii-01.Debug.driver.xcl" 
 }

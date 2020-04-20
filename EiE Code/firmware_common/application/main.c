@@ -17,6 +17,11 @@ volatile u32 G_u32SystemTime1s  = 0;     /*!< @brief Global system time incremen
 volatile u32 G_u32SystemFlags   = 0;     /*!< @brief Global system flags */
 volatile u32 G_u32ApplicationFlags = 0;  /*!< @brief Global system application flags: set when application is successfully initialized */
 
+bool BTN0 = FALSE;
+bool BTN1 = FALSE;
+bool BTN2 = FALSE;
+bool BTN3 = FALSE;
+
 /* Task short names corresponding to G_u32ApplicationFlags in main.h */
 #ifdef EIE_ASCII
 const u8 G_aau8AppShortNames[NUMBER_APPLICATIONS][MAX_TASK_NAME_SIZE] = 
@@ -91,7 +96,7 @@ void main(void)
   UserApp1Initialize();
   UserApp2Initialize();
   UserApp3Initialize();
-
+  AntMasterInitialize();
   /* Exit initialization */
   SystemStatusReport();
   G_u32SystemFlags &= ~_SYSTEM_INITIALIZING;
@@ -127,9 +132,14 @@ void main(void)
 #endif /* EIE_DOTMATRIX */
 
     /* Applications */
+    BTN0 = FALSE;
+    BTN1 = FALSE;
+    BTN2 = FALSE;
+    BTN3 = FALSE;
     UserApp1RunActiveState();
     UserApp2RunActiveState();
     UserApp3RunActiveState();
+    AntMasterRunActiveState();
         
     /* System sleep */
     HEARTBEAT_OFF();

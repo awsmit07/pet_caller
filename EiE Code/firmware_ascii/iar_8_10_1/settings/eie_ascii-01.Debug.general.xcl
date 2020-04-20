@@ -1,16 +1,16 @@
-"C:\Users\jadef\EiE\arm\bin\armproc.dll" 
+"C:\Program Files\IAR Systems\EWARM_KS_8_10\arm\bin\armproc.dll" 
 
-"C:\Users\jadef\EiE\arm\bin\armjlink2.dll" 
+"C:\Program Files\IAR Systems\EWARM_KS_8_10\arm\bin\armjlink2.dll" 
 
-"C:\Users\jadef\Documents\GitHub\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\Debug\Exe\eie_ascii-01.out" 
+"C:\github\pet_caller\EiE Code\firmware_ascii\iar_8_10_1\Debug\Exe\eie_ascii-01.out" 
 
---plugin "C:\Users\jadef\EiE\arm\bin\armbat.dll" 
+--plugin "C:\Program Files\IAR Systems\EWARM_KS_8_10\arm\bin\armbat.dll" 
 
 --rtc_enable 
 
---device_macro "C:\Users\jadef\EiE\arm\config\debugger\Atmel\SAM3U.dmac" 
+--device_macro "C:\Program Files\IAR Systems\EWARM_KS_8_10\arm\config\debugger\Atmel\SAM3U.dmac" 
 
---flash_loader "C:\Users\jadef\EiE\arm\config\flashloader\Atmel\sam3u2c\sam3u2c-flash.board" 
+--flash_loader "C:\Program Files\IAR Systems\EWARM_KS_8_10\arm\config\flashloader\Atmel\sam3u2c\sam3u2c-flash.board" 
 
 
 
